@@ -1,0 +1,34 @@
+const token = "abc";
+const estados = [
+  "Aguascalientes",
+  "Baja California",
+  "Baja California Sur",
+  "Campeche",
+];
+
+
+const parejas = [];
+const id_inicio = 7000000;
+for (i = 0; i <= 31; i++) {
+  parejas[i] = [estados[i], "0" + String(id_inicio + i + 1), ""];
+  url =
+    "https://www.inegi.org.mx/app/api/indicadores/desarrolladores/jsonxml/INDICATOR/1002000001,1002000002,1002000003/es/" +
+    parejas[i][1] +
+    "/true/BISE/2.0/" +
+    token +
+    "?type=json";
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(response.status);
+    }
+    const data = await response.json();
+    parejas[i][2] = data.Series[0].OBSERVATIONS[0].OBS_VALUE;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+console.log(parejas);
+
+  https://www.inegi.org.mx/app/api/indicadores/desarrolladores/jsonxml/INDICATOR/1002000001,1002000002,1002000003/es/07000001/true/BISE/2.0/bf3f4259-6bd9-52db-5c62-913a2a4da1c4?type=json

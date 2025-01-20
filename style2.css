@@ -1,0 +1,12 @@
+body {
+    text-align: center;
+    background-color: #121212;
+    color: lightgrey;
+    padding: 3em;
+}
+
+#contenedor_grafico {
+    width: 50em;
+    height: 28em;
+    margin: 0 auto; /* This centers the div horizontally */
+}
